@@ -1,6 +1,8 @@
 "use client";
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import {
@@ -28,6 +30,20 @@ const moreLinks = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
+
+  const getLinkClass = (href: string) =>
+    cn(
+      "hover:text-primary transition-colors",
+      pathname === href && "text-primary"
+    );
+  
+  const getMobileLinkClass = (href: string) =>
+    cn(
+      "text-lg font-medium hover:text-primary transition-colors",
+      pathname === href && "text-primary"
+    );
+
   return (
     <header className="fixed top-0 left-0 w-full bg-background/50 backdrop-blur-md z-50 transition-colors duration-500 border-b border-border/50">
       <nav className="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
@@ -37,7 +53,7 @@ export function Header() {
         
         <div className="hidden md:flex items-center space-x-6 font-bold">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-primary transition-colors">
+            <Link key={link.href} href={link.href} className={getLinkClass(link.href)}>
               {link.label}
             </Link>
           ))}
@@ -52,13 +68,13 @@ export function Header() {
             <DropdownMenuContent className="w-48 bg-popover text-popover-foreground">
               {moreLinks.map((link) => (
                  <DropdownMenuItem key={link.href} asChild>
-                    <Link href={link.href}>{link.label}</Link>
+                    <Link href={link.href} className={pathname === link.href ? 'text-primary' : ''}>{link.label}</Link>
                  </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link href="/contact" className="hover:text-primary transition-colors">
+          <Link href="/contact" className={getLinkClass('/contact')}>
             Contact
           </Link>
           <ThemeToggle />
@@ -80,7 +96,7 @@ export function Header() {
                 </div>
                 {[...navLinks, ...moreLinks, {href: '/contact', label: 'Contact'}].map((link) => (
                   <SheetClose key={link.href} asChild>
-                    <Link href={link.href} className="text-lg font-medium hover:text-primary transition-colors">
+                    <Link href={link.href} className={getMobileLinkClass(link.href)}>
                       {link.label}
                     </Link>
                   </SheetClose>

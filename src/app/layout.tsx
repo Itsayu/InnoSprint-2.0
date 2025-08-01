@@ -29,7 +29,7 @@ export default function RootLayout({
           <BackgroundAnimation />
           <div className="relative z-10 flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow">
+            <main className="flex-grow relative z-20">
               {children}
             </main>
             <Footer />
