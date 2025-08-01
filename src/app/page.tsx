@@ -16,6 +16,7 @@ export default function Home() {
       <Button asChild size="lg" className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-8 rounded-lg text-lg uppercase tracking-wider transition-transform transform hover:scale-105 shadow-lg shadow-primary/50">
         <Link href="/contact">Register Now</Link>
       </Button>
+      <p className="mt-8 text-sm text-muted-foreground">Organized by D4 Community</p>
     </div>
   );
 }
