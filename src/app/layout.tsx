@@ -15,7 +15,7 @@ const inter = Inter({
 
 
 export const metadata: Metadata = {
-  title: 'InnoSprint: Ragnarok',
+  title: 'InnoSprint 2.0',
   description: 'Unleash the Fury of Code at InnoSprint 2.0 Hackathon',
 };
 

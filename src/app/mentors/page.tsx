@@ -1,4 +1,3 @@
-
 'use client';
 
 import { PageContainer } from '@/components/page-container';
@@ -19,10 +18,10 @@ const chiefGuest: ProfileCardProps = {
 };
 
 const mentors: ProfileCardProps[] = [
-  { name: 'Freya the Strategist', title: 'AI & Machine Learning Oracle', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'female strategist', description: 'Freya is a master of artificial intelligence, weaving complex algorithms as a sorceress weaves spells. She guides teams on crafting intelligent systems that can learn and adapt.', socials: { twitter: '#', linkedin: '#', github: '#' } },
-  { name: 'Bjorn Ironside', title: 'Full-Stack Development Jarl', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'viking warrior', description: 'With the strength of a true berserker, Bjorn can build entire applications from the ground up. He mentors on robust architecture and scalable design.', socials: { twitter: '#', linkedin: '#', github: '#' } },
-  { name: 'Lagertha the Shieldmaiden', title: 'UI/UX Design Valkyrie', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'female warrior', description: 'Lagertha champions the user. Her expertise lies in creating intuitive and beautiful interfaces that provide a seamless user experience, guiding warriors to design with both form and function.', socials: { twitter: '#', linkedin: '#', dribbble: '#' } },
-  { name: 'Ivar the Boneless', title: 'Cybersecurity Expert', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'cunning warrior', description: 'Known for his cunning and strategic mind, Ivar is a master of digital defense. He teaches how to fortify applications against the darkest of digital threats.', socials: { twitter: '#', linkedin: '#', } },
+  { name: 'yo', title: 'AI & Machine Learning at Oracle', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'female strategist', description: 'yo is a master of artificial intelligence, weaving complex algorithms as a sorceress weaves spells. She guides teams on crafting intelligent systems that can learn and adapt.', socials: { twitter: '#', linkedin: '#', github: '#' } },
+  { name: 'yo yo', title: 'Full-Stack Development at D4', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'viking warrior', description: 'With the strength of a true berserker, yo yo can build entire applications from the ground up. He mentors on robust architecture and scalable design.', socials: { twitter: '#', linkedin: '#', github: '#' } },
+  { name: 'yo yo yo', title: 'UI/UX Design at D4', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'female warrior', description: 'yo yo yo champions the user. Her expertise lies in creating intuitive and beautiful interfaces that provide a seamless user experience, guiding warriors to design with both form and function.', socials: { twitter: '#', linkedin: '#', dribbble: '#' } },
+  { name: 'yo yo yo yo', title: 'Cybersecurity Expert', imageUrl: 'https://placehold.co/400x400.png', dataAiHint: 'cunning warrior', description: 'Known for his cunning and strategic mind, yo yo yo yo is a master of digital defense. He teaches how to fortify applications against the darkest of digital threats.', socials: { twitter: '#', linkedin: '#', } },
 ];
 
 

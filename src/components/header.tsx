@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -16,6 +15,7 @@ import {
 import { ThemeToggle } from './theme-toggle';
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
+import { useTheme } from './theme-provider';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -34,14 +34,19 @@ const moreLinks = [
 
 export function Header() {
   const pathname = usePathname();
+  const { theme } = useTheme();
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
-  const getLinkClass = (href: string) =>
+  const isMoreActive = moreLinks.some(link => pathname === link.href);
+
+  const getLinkClass = (href: string, isActive: boolean = false) =>
     cn(
-      "hover:text-primary transition-colors",
-      pathname === href && "text-primary"
+      "relative font-bold transition-colors hover:text-primary",
+      "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-full after:bg-primary",
+      "after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
+      (pathname === href || isActive) && "text-primary after:scale-x-100"
     );
-  
+
   const getMobileLinkClass = (href: string) =>
     cn(
       "text-lg font-medium hover:text-primary transition-colors",
@@ -52,38 +57,51 @@ export function Header() {
     <header className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-xl z-50 transition-colors duration-500 border-b border-border/50">
       <nav className="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-headline font-black text-primary tracking-wider" style={{ textShadow: '0 0 5px hsla(var(--primary), 0.5)' }}>
-          <Image src="/logo.png" alt="InnoSprint 2.0 Logo" width={180} height={40} />
+          <Image 
+            src={theme === 'dark' ? '/innosprint2.0w.png' : '/innosprint2.0.png'} 
+            alt="InnoSprint 2.0 Logo" 
+            width={180} 
+            height={40}
+            priority={true}
+          />
         </Link>
         
-        <div className="hidden md:flex items-center space-x-6 font-bold">
+        <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href} className={getLinkClass(link.href)}>
               {link.label}
             </Link>
           ))}
           
-          <DropdownMenu open={isMoreMenuOpen} onOpenChange={setIsMoreMenuOpen}>
-            <DropdownMenuTrigger asChild>
-              <Button 
-                variant="ghost"
-                className="font-bold hover:text-primary transition-colors flex items-center p-2 focus-visible:ring-0"
-                onMouseEnter={() => setIsMoreMenuOpen(true)}
-              >
-                More
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent 
-              className="w-48 bg-popover text-popover-foreground"
-              onMouseLeave={() => setIsMoreMenuOpen(false)}
-            >
-              {moreLinks.map((link) => (
-                 <DropdownMenuItem key={link.href} asChild>
-                    <Link href={link.href} className={pathname === link.href ? 'text-primary' : ''}>{link.label}</Link>
-                 </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Change starts here: Wrap DropdownMenu in a div with hover handlers */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsMoreMenuOpen(true)}
+            onMouseLeave={() => setIsMoreMenuOpen(false)}
+          >
+            <DropdownMenu open={isMoreMenuOpen} onOpenChange={setIsMoreMenuOpen}>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost"
+                  className={cn(
+                    getLinkClass('', isMoreActive),
+                    'flex items-center p-2 focus-visible:ring-0 focus-visible:ring-offset-0 hover:bg-transparent'
+                  )}
+                >
+                  More
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-48 bg-popover text-popover-foreground">
+                {moreLinks.map((link) => (
+                    <DropdownMenuItem key={link.href} asChild>
+                      <Link href={link.href} className={pathname === link.href ? 'text-primary' : ''}>{link.label}</Link>
+                    </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          {/* Change ends here */}
 
           <Link href="/contact" className={getLinkClass('/contact')}>
             Contact
@@ -91,6 +109,7 @@ export function Header() {
           <ThemeToggle />
         </div>
 
+        {/* --- Mobile Menu (The global CSS fix will also solve the layout shift here) --- */}
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
