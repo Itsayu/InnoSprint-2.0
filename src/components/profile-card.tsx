@@ -15,7 +15,7 @@ export interface ProfileCardProps {
 export function ProfileCard({ name, title, imageUrl, dataAiHint, onCardClick }: Omit<ProfileCardProps, 'description' | 'socials'> & {onCardClick?: () => void}) {
   return (
     <Card 
-        className="text-center bg-card/50 hover:bg-card/80 transition-colors duration-300 ease-in-out group border-border/50 hover:shadow-primary/20 hover:shadow-lg cursor-pointer"
+        className="text-center bg-card/50 hover:bg-card/80 transition-all duration-300 ease-in-out group border-border/50 hover:shadow-primary/20 hover:shadow-lg cursor-pointer hover:-translate-y-1"
         onClick={onCardClick}
     >
       <CardHeader className="items-center pb-0">

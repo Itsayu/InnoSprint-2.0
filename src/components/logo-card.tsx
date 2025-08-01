@@ -10,7 +10,7 @@ export interface LogoCardProps {
 
 export function LogoCard({ name, logoUrl, dataAiHint }: LogoCardProps) {
   return (
-    <Card className="bg-card/50 hover:bg-card/80 transition-all duration-300 ease-in-out group border-border/50 hover:shadow-primary/20 hover:shadow-lg">
+    <Card className="bg-card/50 hover:bg-card/80 transition-all duration-300 ease-in-out group border-border/50 hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-1">
       <CardContent className="p-6 flex flex-col items-center justify-center aspect-video">
         <div className="relative w-full h-24">
             <Image
