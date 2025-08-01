@@ -82,3 +82,12 @@
     }
   }
 }
+
+
+:root {
+  --scrollbar-width: calc(100vw - 100%);
+}
+
+body[style*='overflow: hidden'] {
+  padding-right: var(--scrollbar-width, 15px) !important;
+}

@@ -1,4 +1,4 @@
-# **App Name**: InnoSprint: Ragnarok
+# **App Name**: InnoSprint 2.0
 
 ## Core Features:
 
