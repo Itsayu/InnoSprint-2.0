@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef, useEffect } from 'react';
@@ -6,6 +7,7 @@ import { useTheme } from '@/components/theme-provider';
 export function BackgroundAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
+  const mouse = useRef<{ x: number | undefined, y: number | undefined }>({ x: undefined, y: undefined });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -23,6 +25,7 @@ export function BackgroundAnimation() {
       x: number;
       y: number;
       size: number;
+      baseSize: number;
       speedX: number;
       speedY: number;
       opacity: number;
@@ -32,6 +35,7 @@ export function BackgroundAnimation() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 3 + 1;
+        this.baseSize = this.size;
         this.speedX = Math.random() * 0.6 - 0.3;
         this.speedY = Math.random() * 1 + 0.5;
         this.opacity = Math.random() * 0.7 + 0.3;
@@ -52,6 +56,24 @@ export function BackgroundAnimation() {
           this.y = -this.size;
           this.x = Math.random() * canvas.width;
         }
+
+        // Mouse interaction
+        if (mouse.current.x !== undefined && mouse.current.y !== undefined) {
+          const dx = mouse.current.x - this.x;
+          const dy = mouse.current.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            this.size = this.baseSize * 3;
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const force = (100 - distance) / 100;
+            this.x -= forceDirectionX * force * 1.5;
+            this.y -= forceDirectionY * force * 1.5;
+          } else {
+            this.size = this.baseSize;
+          }
+        }
+
         if (Math.random() > 0.95) {
           this.opacity = Math.random() * 0.7 + 0.3;
         }
@@ -99,10 +121,25 @@ export function BackgroundAnimation() {
       init();
     };
 
+    const handleMouseMove = (event: MouseEvent) => {
+        mouse.current.x = event.x;
+        mouse.current.y = event.y;
+    };
+    
+    const handleMouseLeave = () => {
+        mouse.current.x = undefined;
+        mouse.current.y = undefined;
+    };
+
+
     window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, [theme]);
