@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -13,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ThemeToggle } from './theme-toggle';
 import { Menu } from 'lucide-react';
+import { useState } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -31,6 +33,7 @@ const moreLinks = [
 
 export function Header() {
   const pathname = usePathname();
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
   const getLinkClass = (href: string) =>
     cn(
@@ -58,14 +61,21 @@ export function Header() {
             </Link>
           ))}
           
-          <DropdownMenu>
+          <DropdownMenu open={isMoreMenuOpen} onOpenChange={setIsMoreMenuOpen}>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="font-bold hover:text-primary transition-colors flex items-center p-2 focus-visible:ring-0">
+              <Button 
+                variant="ghost"
+                className="font-bold hover:text-primary transition-colors flex items-center p-2 focus-visible:ring-0"
+                onMouseEnter={() => setIsMoreMenuOpen(true)}
+              >
                 More
                 <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48 bg-popover text-popover-foreground">
+            <DropdownMenuContent 
+              className="w-48 bg-popover text-popover-foreground"
+              onMouseLeave={() => setIsMoreMenuOpen(false)}
+            >
               {moreLinks.map((link) => (
                  <DropdownMenuItem key={link.href} asChild>
                     <Link href={link.href} className={pathname === link.href ? 'text-primary' : ''}>{link.label}</Link>

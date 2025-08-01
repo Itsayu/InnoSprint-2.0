@@ -35,7 +35,7 @@ export default function EventsPage() {
              <p className="text-center mb-12 text-lg">The saga unfolds with intense coding challenges, mentorship from industry titans, and workshops on forbidden technologies. Here is the chronicle of our grand tournament.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {events.map((event) => (
-                    <Card key={event.day} className="bg-card/50 border-border/50">
+                    <Card key={event.day} className="bg-card/50 backdrop-blur-lg border-border/50 hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-1 transition-all">
                         <CardHeader>
                             <CardTitle className="text-3xl text-primary font-bold">{event.day}</CardTitle>
                             <p className="text-muted-foreground">{event.date}</p>
