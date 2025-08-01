@@ -5,6 +5,13 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { BackgroundAnimation } from '@/components/background-animation';
 import { Toaster } from "@/components/ui/toaster"
+import { Inter } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 
 export const metadata: Metadata = {
@@ -18,13 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-headline antialiased">
+      <body className="font-sans antialiased">
         <ThemeProvider>
           <BackgroundAnimation />
           <div className="relative z-10 flex flex-col min-h-screen">

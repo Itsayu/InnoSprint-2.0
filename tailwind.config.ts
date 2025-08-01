@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Cinzel', 'serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
         headline: ['Cinzel', 'serif'],
         code: ['monospace'],
       },
