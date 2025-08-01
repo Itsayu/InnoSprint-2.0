@@ -2,6 +2,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -51,7 +52,7 @@ export function Header() {
     <header className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-xl z-50 transition-colors duration-500 border-b border-border/50">
       <nav className="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-headline font-black text-primary tracking-wider" style={{ textShadow: '0 0 5px hsla(var(--primary), 0.5)' }}>
-          InnoSprint 2.0
+          <Image src="/logo.png" alt="InnoSprint 2.0 Logo" width={180} height={40} />
         </Link>
         
         <div className="hidden md:flex items-center space-x-6 font-bold">
