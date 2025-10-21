@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
-      <p className="mb-2 text-lg md:text-xl text-muted-foreground">D4 Community presents InnoSprint 2.0</p>
+      <p className="mb-2 text-lg md:text-xl text-muted-foreground">D4 Community presents Hack-N-Win 3.0</p>
       <h1 
         className="text-5xl md:text-7xl font-headline font-black text-foreground uppercase tracking-widest leading-tight" 
         style={{ textShadow: '0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px #ff4500' }}
