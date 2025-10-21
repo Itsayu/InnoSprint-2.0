@@ -58,8 +58,8 @@ export function Header() {
       <nav className="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-headline font-black text-primary tracking-wider" style={{ textShadow: '0 0 5px hsla(var(--primary), 0.5)' }}>
           <Image 
-            src={theme === 'light' ? '/innosprint2.0.png' : '/innosprintwhite.png'} 
-            alt="InnoSprint 2.0" 
+            src={theme === 'light' ? '/Pink.svg' : '/Pink.svg'} 
+            alt="Hack-N-Win 3.0" 
             width={180} 
             height={40}
             priority={true}

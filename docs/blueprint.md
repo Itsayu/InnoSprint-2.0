@@ -1,4 +1,4 @@
-# **App Name**: InnoSprint 2.0
+# **App Name**: Hack-N-Win 3.0
 
 ## Core Features:
 

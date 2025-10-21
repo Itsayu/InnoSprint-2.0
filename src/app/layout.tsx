@@ -15,8 +15,8 @@ const inter = Inter({
 
 
 export const metadata: Metadata = {
-  title: 'InnoSprint 2.0',
-  description: 'Unleash the Fury of Code at InnoSprint 2.0 Hackathon',
+  title: 'Hack-N-Win 3.0',
+  description: 'Unleash the Fury of Code at Hack-N-Win 3.0 Hackathon',
 };
 
 export default function RootLayout({
